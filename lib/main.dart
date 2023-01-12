@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:book_report_fluor/screens/screens_index.dart';
+import 'package:book_report_fluor/screens/screens_login.dart';
+import 'package:book_report_fluor/screens/screens_splash.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,9 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Book Report',
       routes: {
+        '/': (context) => SplashScreen(),
+        '/login': (context) => LoginScreen(),
         '/index': (context) => IndexScreen(),
       },
-      initialRoute: '/index',
+      initialRoute: '/',
     );
   }
 }
