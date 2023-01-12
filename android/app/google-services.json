@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896719451152",
+    "project_id": "book-report-fluorjo",
+    "storage_bucket": "book-report-fluorjo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896719451152:android:79a9390e06496b7e7f8695",
+        "android_client_info": {
+          "package_name": "com.fluorjo.book_report_fluor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896719451152-ba29u4ll2o9hlofpmlhk33k90hh1o5p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCZMEJPRxMDOwNfuwR9sJND6V_MdcRzGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896719451152-ba29u4ll2o9hlofpmlhk33k90hh1o5p9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
