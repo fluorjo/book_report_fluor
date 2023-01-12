@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:book_report_fluor/screens/screens_detail.dart';
 import 'package:book_report_fluor/screens/screens_index.dart';
 import 'package:book_report_fluor/screens/screens_login.dart';
+import 'package:book_report_fluor/screens/screens_register.dart';
+import 'package:book_report_fluor/screens/screens_search.dart';
 import 'package:book_report_fluor/screens/screens_splash.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -19,6 +22,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),
         '/index': (context) => IndexScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/search': (context) => SearchScreen(),
+        '/detail': (context) => DetailScreen(),
       },
       initialRoute: '/',
     );
