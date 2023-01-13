@@ -10,33 +10,31 @@ import 'package:book_report_fluor/models/model_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>FirebaseAuthProvider()),
+        ChangeNotifierProvider(create: (_) => FirebaseAuthProvider()),
       ],
-      child:MaterialApp(
-      title: 'Book Report',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/login': (context) => LoginScreen(),
-        '/index': (context) => IndexScreen(),
-        '/register': (context) => RegisterScreen(),
-        '/search': (context) => SearchScreen(),
-        '/detail': (context) => DetailScreen(),
-      },
-      initialRoute: '/',
+      child: MaterialApp(
+        title: 'Book Report',
+        routes: {
+          '/': (context) => SplashScreen(),
+          '/login': (context) => LoginScreen(),
+          '/index': (context) => IndexScreen(),
+          '/register': (context) => RegisterScreen(),
+          '/search': (context) => SearchScreen(),
+          '/detail': (context) => DetailScreen(),
+        },
+        initialRoute: '/',
       ),
     );
   }
