@@ -6,8 +6,14 @@ import 'package:book_report_fluor/screens/screens_register.dart';
 import 'package:book_report_fluor/screens/screens_search.dart';
 import 'package:book_report_fluor/screens/screens_splash.dart';
 
-void main() {
+import 'package:book_report_fluor/models/model_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp( MyApp());
 }
 
@@ -16,7 +22,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=>FirebaseAuthProvider()),
+      ],
+      child:MaterialApp(
       title: 'Book Report',
       routes: {
         '/': (context) => SplashScreen(),
@@ -27,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/detail': (context) => DetailScreen(),
       },
       initialRoute: '/',
+      ),
     );
   }
 }
