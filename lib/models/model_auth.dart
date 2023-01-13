@@ -15,18 +15,18 @@ class FirebaseAuthProvider with ChangeNotifier {
 
   FirebaseAuthProvider({auth}) : authClient = auth ?? FirebaseAuth.instance;
 
-  Future<AuthStatus> registerWithEmail(String email, String password) async{
-    try{
+  Future<AuthStatus> registerWithEmail(String email, String password) async {
+    try {
       UserCredential credential = await authClient
-      .createUserWithEmailAndPassword(email: email, password: password);
+          .createUserWithEmailAndPassword(email: email, password: password);
       return AuthStatus.registerSuccess;
-    } catch(e){
+    } catch (e) {
       print(e);
       return AuthStatus.registerFail;
     }
   }
 
-    Future<AuthStatus> loginWithEmail(String email, String password) async {
+  Future<AuthStatus> loginWithEmail(String email, String password) async {
     try {
       await authClient
           .signInWithEmailAndPassword(email: email, password: password)
@@ -37,11 +37,21 @@ class FirebaseAuthProvider with ChangeNotifier {
         prefs.setString('email', email);
         prefs.setString('password', password);
       });
-      print("[+] 로그인유저 : " + user!.email.toString());
+      print("[+] 로그인유저 : ${user!.email}");
       return AuthStatus.loginSuccess;
     } catch (e) {
       print(e);
       return AuthStatus.loginFail;
     }
+  }
+
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLogin', false);
+    prefs.setString('email', '');
+    prefs.setString('password', '');
+    user = null;
+    await authClient.signOut();
+    print("[-] 로그아웃");
   }
 }
