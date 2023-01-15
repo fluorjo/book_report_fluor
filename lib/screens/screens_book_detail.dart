@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class bookDetailScreen extends StatelessWidget {
   final String bookTitle;
+  final String bookThumbnail;
 
   const bookDetailScreen({
     required this.bookTitle,
+    required this.bookThumbnail,
   });
 
   @override
@@ -17,7 +19,7 @@ class bookDetailScreen extends StatelessWidget {
           child: Column(
             children: [
               Image.network(
-                'https://picsum.photos/250/250',
+                bookThumbnail,
               ),
               const Padding(
                 padding: EdgeInsets.all(3),

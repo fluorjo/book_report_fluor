@@ -7,7 +7,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 class SearchScreen extends StatefulWidget {
   @override
   State<SearchScreen> createState() => _SearchScreenState();
-  
 }
 
 class _SearchScreenState extends State<SearchScreen> {
@@ -16,7 +15,6 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController? _editingController;
   ScrollController? _scrollController;
   int page = 1;
-
 
   @override
   void initState() {
@@ -94,10 +92,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ],
                           ),
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
                                 builder: (context) => bookDetailScreen(
-                                  bookTitle:data![index]['title'].toString(),
-                                    )));
+                                    bookTitle: data![index]['title'].toString(),
+                                    bookThumbnail: data![index]['thumbnail']),
+                              ),
+                            );
                           },
                         ),
                       ),
