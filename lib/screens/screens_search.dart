@@ -96,7 +96,10 @@ class _SearchScreenState extends State<SearchScreen> {
                               MaterialPageRoute(
                                 builder: (context) => bookDetailScreen(
                                     bookTitle: data![index]['title'].toString(),
-                                    bookThumbnail: data![index]['thumbnail']),
+                                    bookThumbnail: data![index]['thumbnail'],
+                                    bookContents: data![index]['contents'],
+                                    bookAuthors: data![index]['authors'],
+                                    ),
                               ),
                             );
                           },

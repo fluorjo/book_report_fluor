@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 class bookDetailScreen extends StatelessWidget {
   final String bookTitle;
   final String bookThumbnail;
+  final String bookContents;
+  final List<dynamic> bookAuthors;
 
   const bookDetailScreen({
     required this.bookTitle,
     required this.bookThumbnail,
+    required this.bookContents,
+    required this.bookAuthors,
   });
 
   @override
-  Widget build(BuildContext context, ) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
         appBar: AppBar(
           title: Text(bookTitle),
@@ -44,9 +50,10 @@ class bookDetailScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Text(
-                          '책 부제목? 설명?',
-                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        Text(
+                          '$bookAuthors',
+                          style:
+                              const TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -73,11 +80,12 @@ class bookDetailScreen extends StatelessWidget {
                   Column(
                     children: const [
                       Icon(
-                        Icons.call,
+                        Icons.travel_explore,
+                        //실제 서점 페이지로 링크되게 하기.
                         color: Colors.blue,
                       ),
                       Text(
-                        '아이콘',
+                        '웹사이트',
                         style: TextStyle(fontSize: 18, color: Colors.blue),
                       )
                     ],
@@ -85,11 +93,11 @@ class bookDetailScreen extends StatelessWidget {
                   Column(
                     children: const [
                       Icon(
-                        Icons.near_me,
+                        Icons.bookmark_border,
                         color: Colors.blue,
                       ),
                       Text(
-                        '아이콘',
+                        '북마크',
                         style: TextStyle(fontSize: 18, color: Colors.blue),
                       )
                     ],
@@ -101,7 +109,7 @@ class bookDetailScreen extends StatelessWidget {
                         color: Colors.blue,
                       ),
                       Text(
-                        '아이콘',
+                        '서재에 저장',
                         style: TextStyle(fontSize: 18, color: Colors.blue),
                       )
                     ],
@@ -110,8 +118,8 @@ class bookDetailScreen extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.all(15),
-                child: const Text(
-                  '책 상세 설명',
+                child: Text(
+                  bookContents,
                 ),
               )
             ],
