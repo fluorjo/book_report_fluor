@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 class bookDetailScreen extends StatelessWidget {
+  final String bookTitle;
+
+  const bookDetailScreen({
+    required this.bookTitle,
+  });
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('ddddddddddddddd'),
+          title: Text(bookTitle),
         ),
         body: Container(
           child: Column(
@@ -28,9 +34,9 @@ class bookDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          child: const Text(
-                            '책 제목',
-                            style: TextStyle(
+                          child: Text(
+                            bookTitle,
+                            style: const TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.bold,
                             ),
@@ -108,7 +114,6 @@ class bookDetailScreen extends StatelessWidget {
               )
             ],
           ),
-        )
-        );
+        ));
   }
 }

@@ -6,8 +6,6 @@ import 'package:book_report_fluor/screens/screens_register.dart';
 import 'package:book_report_fluor/screens/screens_search.dart';
 import 'package:book_report_fluor/screens/screens_splash.dart';
 
-import 'package:book_report_fluor/screens/screens_book_detail.dart';
-
 import 'package:book_report_fluor/models/model_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
           '/register': (context) => RegisterScreen(),
           '/search': (context) => SearchScreen(),
           '/detail': (context) => DetailScreen(),
-          '/bookDetail': (context) => bookDetailScreen(),
+//          '/bookDetail': (context) => bookDetailScreen(),
         },
         initialRoute: '/',
       ),
