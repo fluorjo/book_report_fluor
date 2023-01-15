@@ -10,18 +10,25 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   String result = '';
   List? data;
+  TextEditingController? _editingController;
 
   @override
   void initState() {
     super.initState();
     data = List.empty(growable: true);
+    _editingController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('http example'),
+        title: TextField(
+          controller: _editingController,
+          style: const TextStyle(color: Colors.white),
+          keyboardType: TextInputType.text,
+          decoration: const InputDecoration(hintText: '검색어를 입력하세요'),
+        ),
       ),
       body: Container(
         child: Center(
@@ -46,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                             Column(
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width - 150,
                                   child: Text(
@@ -80,7 +87,9 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Future<String> getJSONData() async {
-    var url = 'https://dapi.kakao.com/v3/search/book?target=title&query=doit';
+    var url =
+        'https://dapi.kakao.com/v3/search/book?target=title&query=${_editingController!.value.text}';
+
     var response = await http.get(Uri.parse(url),
         headers: {"Authorization": "KakaoAK cc88f89bd0a8b58cce4d732fac88b0e8"});
     setState(() {
@@ -88,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
       List result = dataConvertedToJSON['documents'];
       data!.addAll(result);
     });
-
+    print(response.body);
     return response.body;
   }
 }
