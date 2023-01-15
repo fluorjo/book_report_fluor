@@ -1,3 +1,4 @@
+import 'package:book_report_fluor/screens/screens_book_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -55,39 +56,45 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemBuilder: (context, index) {
                     return Card(
                       child: Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            CachedNetworkImage(
-                              imageUrl: data![index]['thumbnail'] == ''
-                                  ? 'https://cdn-icons-png.flaticon.com/512/3875/3875148.png'
-                                  : data![index]['thumbnail'],
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              width: 100,
-                              height: 100,
-                            ),
-                            Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 150,
-                                  child: Text(
-                                    data![index]['title'].toString(),
-                                    textAlign: TextAlign.center,
+                        child: InkWell(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              CachedNetworkImage(
+                                imageUrl: data![index]['thumbnail'] == ''
+                                    ? 'https://cdn-icons-png.flaticon.com/512/3875/3875148.png'
+                                    : data![index]['thumbnail'],
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                width: 100,
+                                height: 100,
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width - 150,
+                                    child: Text(
+                                      data![index]['title'].toString(),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                    '저자: ${data![index]['authors'].toString()}'),
-                                Text(
-                                    '가격: ${data![index]['sale_price'].toString()}'),
-                                Text(
-                                    '판매상태: ${data![index]['status'].toString()}'),
-                              ],
-                            )
-                          ],
+                                  Text(
+                                      '저자: ${data![index]['authors'].toString()}'),
+                                  Text(
+                                      '가격: ${data![index]['sale_price'].toString()}'),
+                                  Text(
+                                      '판매상태: ${data![index]['status'].toString()}'),
+                                ],
+                              )
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => bookDetailScreen()));
+                          },
                         ),
                       ),
                     );

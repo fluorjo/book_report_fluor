@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           '/detail': (context) => DetailScreen(),
           '/bookDetail': (context) => bookDetailScreen(),
         },
-        initialRoute: '/bookDetail',
+        initialRoute: '/',
       ),
     );
   }
