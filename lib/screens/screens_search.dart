@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -45,11 +46,16 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Image.network(
-                              data![index]['thumbnail'],
-                              height: 100,
+                            CachedNetworkImage(
+                              imageUrl: data![index]['thumbnail'] == ''
+                                  ? 'https://cdn-icons-png.flaticon.com/512/3875/3875148.png'
+                                  : data![index]['thumbnail'],
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                               width: 100,
-                              fit: BoxFit.contain,
+                              height: 100,
                             ),
                             Column(
                               children: <Widget>[
