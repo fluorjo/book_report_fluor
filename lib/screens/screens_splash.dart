@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Provider.of<FirebaseAuthProvider>(context, listen: false);
 
     bool isLogin = prefs.getBool('isLogin') ?? false;
-    print("[*] 로그인 상태:" + isLogin.toString());
+    print("[*] 로그인 상태:$isLogin");
 
     if (isLogin) {
       String? email = prefs.getString('email');
@@ -41,7 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void moveScreen() async {
     await checkLogin().then((isLogin) {
       if (isLogin) {
-        Navigator.of(context).pushReplacementNamed('/index');
+        Navigator.of(context).pushReplacementNamed('/bookDetail');
+        //index
       } else {
         Navigator.of(context).pushReplacementNamed('/login');
       }
@@ -51,9 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 1500), () {
-      moveScreen();
-    });
+    moveScreen();
+//    Timer(const Duration(milliseconds: 1500), () {
+//      moveScreen();
+//    });
   }
 
   @override
@@ -61,8 +63,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: null,
       body: Center(
         child: Text('Splash Screen'),

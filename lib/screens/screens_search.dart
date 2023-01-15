@@ -28,7 +28,6 @@ class _SearchScreenState extends State<SearchScreen> {
           !_scrollController!.position.outOfRange) {
         print('bottom');
         page++;
-        getJSONData();
       }
     });
   }
