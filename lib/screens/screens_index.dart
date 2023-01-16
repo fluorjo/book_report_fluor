@@ -3,6 +3,7 @@ import 'package:book_report_fluor/tabs/tab_cart.dart';
 import 'package:book_report_fluor/tabs/tab_home.dart';
 import 'package:book_report_fluor/tabs/tab_profile.dart';
 import 'package:book_report_fluor/tabs/tab_search.dart';
+
 class IndexScreen extends StatefulWidget {
   @override
   _IndexScreenState createState() => _IndexScreenState();
@@ -38,15 +39,11 @@ class _IndexScreenState extends State<IndexScreen> {
             });
             Navigator.pushNamed(context, '/search');
           }
-
-
-
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: '장바구니'),
+          BottomNavigationBarItem(icon: Icon(Icons.library_books), label: '서재'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
       ),
