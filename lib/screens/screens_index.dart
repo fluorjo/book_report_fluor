@@ -43,7 +43,7 @@ class _IndexScreenState extends State<IndexScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
-          BottomNavigationBarItem(icon: Icon(Icons.library_books), label: '서재'),
+          BottomNavigationBarItem(icon: Icon(Icons.library_books), label: '책꽂이'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
       ),
