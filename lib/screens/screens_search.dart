@@ -43,6 +43,15 @@ class _SearchScreenState extends State<SearchScreen> {
           keyboardType: TextInputType.text,
           decoration: const InputDecoration(hintText: '검색어를 입력하세요'),
         ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                page = 1;
+                data!.clear();
+                getJSONData();
+              },
+              icon: const Icon(Icons.search_rounded))
+        ],
       ),
       body: Container(
         child: Center(
@@ -95,11 +104,11 @@ class _SearchScreenState extends State<SearchScreen> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => bookDetailScreen(
-                                    bookTitle: data![index]['title'].toString(),
-                                    bookThumbnail: data![index]['thumbnail'],
-                                    bookContents: data![index]['contents'],
-                                    bookAuthors: data![index]['authors'],
-                                    ),
+                                  bookTitle: data![index]['title'].toString(),
+                                  bookThumbnail: data![index]['thumbnail'],
+                                  bookContents: data![index]['contents'],
+                                  bookAuthors: data![index]['authors'],
+                                ),
                               ),
                             );
                           },
