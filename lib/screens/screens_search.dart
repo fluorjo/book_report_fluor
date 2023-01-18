@@ -143,7 +143,8 @@ class _SearchScreenState extends State<SearchScreen> {
       List result = dataConvertedToJSON['documents'];
       data!.addAll(result);
     });
-    print(response.body);
+//  print(response.body);
+//  print('data-------------- $data');
     return response.body;
   }
 }
