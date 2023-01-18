@@ -15,6 +15,7 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController? _editingController;
   ScrollController? _scrollController;
   int page = 1;
+  bool? isEnd;
 
   @override
   void initState() {
@@ -26,9 +27,16 @@ class _SearchScreenState extends State<SearchScreen> {
     _scrollController!.addListener(() {
       if (_scrollController!.offset >=
               _scrollController!.position.maxScrollExtent &&
-          !_scrollController!.position.outOfRange) {
-        print('bottom');
+          !_scrollController!.position.outOfRange &&
+          isEnd == false) {
         page++;
+        getJSONData();
+        print('bottom');
+      } else if (_scrollController!.offset >=
+              _scrollController!.position.maxScrollExtent &&
+          !_scrollController!.position.outOfRange &&
+          isEnd == true) {
+        print('---------마지막-------');
       }
     });
   }
@@ -135,13 +143,16 @@ class _SearchScreenState extends State<SearchScreen> {
   Future<String> getJSONData() async {
     var url =
         'https://dapi.kakao.com/v3/search/book?target=title&page=$page&query=${_editingController!.value.text}';
+//나중에 작가로도 따로 검색하게 하거나 하는 게 나을까.
 
     var response = await http.get(Uri.parse(url),
         headers: {"Authorization": "KakaoAK cc88f89bd0a8b58cce4d732fac88b0e8"});
     setState(() {
       var dataConvertedToJSON = json.decode(response.body);
       List result = dataConvertedToJSON['documents'];
+      isEnd = dataConvertedToJSON['meta']['is_end'];
       data!.addAll(result);
+      print(isEnd);
     });
 //  print(response.body);
 //  print('data-------------- $data');
