@@ -36,7 +36,8 @@ class _SearchScreenState extends State<SearchScreen> {
               _scrollController!.position.maxScrollExtent &&
           !_scrollController!.position.outOfRange &&
           isEnd == true) {
-        print('---------마지막-------');
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('마지막입니다')));
       }
     });
   }
