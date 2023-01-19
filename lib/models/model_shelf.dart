@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:book_report_fluor/models/model_book.dart';
 
+
+
 class ShelfProvider with ChangeNotifier {
   late CollectionReference shelfReference;
   List<Book> bookShelf = [];
@@ -50,10 +52,11 @@ class ShelfProvider with ChangeNotifier {
         return book.toSnapshot();
       }).toList()
     };
-        await shelfReference.doc(user!.uid).set(bookShelfMap);
+    await shelfReference.doc(user!.uid).set(bookShelfMap);
     notifyListeners();
   }
-  bool isBookInShelf(Book book){
-    return bookShelf.any((element) => element.id ==book.id);
+
+  bool isBookInShelf(Book book) {
+    return bookShelf.any((element) => element.id == book.id);
   }
 }
