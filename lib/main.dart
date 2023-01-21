@@ -19,7 +19,7 @@ void main() async {
   await Firebase.initializeApp();
 
   runApp(MyApp());
-  print(User.email);
+
 }
 
 class MyApp extends StatelessWidget {
