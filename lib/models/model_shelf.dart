@@ -34,14 +34,14 @@ class ShelfProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addBookToShelf(User? user, Book book) async {
+  Future<void> addBookToShelf(String uid, Book book) async {
     bookShelf.add(book);
     Map<String, dynamic> bookShelfMap = {
       'books': bookShelf.map((book) {
         return book.toSnapshot();
       }).toList()
     };
-    await shelfReference.doc(user!.uid).set(bookShelfMap);
+    await shelfReference.doc(uid).set(bookShelfMap);
     notifyListeners();
   }
 
