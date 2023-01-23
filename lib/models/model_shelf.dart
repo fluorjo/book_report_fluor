@@ -14,11 +14,11 @@ class ShelfProvider with ChangeNotifier {
         reference ?? FirebaseFirestore.instance.collection('bookShelf');
   }
 
-  Future<void> fetchBookOrAddShelf(User? user) async {
-    if (user == null) {
+  Future<void> fetchBookOrAddShelf(String uid) async {
+    if (uid == '') {
       return;
     }
-    final bookSnapshot = await shelfReference.doc(user.uid).get();
+    final bookSnapshot = await shelfReference.doc(uid).get();
     if (bookSnapshot.exists) {
       Map<String, dynamic> bookShelfMap =
           bookSnapshot.data() as Map<String, dynamic>;
@@ -29,7 +29,7 @@ class ShelfProvider with ChangeNotifier {
       bookShelf = temp;
       notifyListeners();
     } else {
-      await shelfReference.doc(user.uid).set({'books': []});
+      await shelfReference.doc(uid).set({'books': []});
       notifyListeners();
     }
   }

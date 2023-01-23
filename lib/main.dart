@@ -12,14 +12,12 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:book_report_fluor/models/model_shelf.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   runApp(MyApp());
-
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -30,8 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FirebaseAuthProvider()),
         ChangeNotifierProvider(create: (_) => ShelfProvider()),
-        ChangeNotifierProvider(create: (_) => FirebaseAuthProvider()),
-        ChangeNotifierProvider(create: (_) => FirebaseAuthProvider()),
+
       ],
       child: MaterialApp(
         title: 'Book Report',

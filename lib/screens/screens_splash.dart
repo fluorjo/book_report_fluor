@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:book_report_fluor/models/model_auth.dart';
+import 'package:book_report_fluor/models/model_shelf.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +17,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     final authClient =
         Provider.of<FirebaseAuthProvider>(context, listen: false);
+    final shelfProvider = Provider.of<ShelfProvider>(context, listen: false);
 
     bool isLogin = prefs.getBool('isLogin') ?? false;
+    String uid = prefs.getString('uid') ?? '';
+    shelfProvider.fetchBookOrAddShelf(uid);
+
     print("[*] 로그인 상태:$isLogin");
+
 
     if (isLogin) {
       String? email = prefs.getString('email');
