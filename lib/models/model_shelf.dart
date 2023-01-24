@@ -12,33 +12,40 @@ class ShelfProvider with ChangeNotifier {
         reference ?? FirebaseFirestore.instance.collection('bookShelf');
   }
 
-  Future<void> fetchBookOrAddShelf(String uid, String bookTitleForDoc) async {
+  Future<void> fetchBookOrCreateShelf(String uid) async {
     if (uid == '') {
       return;
     }
-    final userBookshelf =
-        await shelfReference.doc(uid).collection('myBookShelf').get();
-  
-    final allData = userBookshelf.docs.map((doc) => doc.data()).toList();
+    final shelfReferenceUserID = await shelfReference.doc(uid).get();
 
-    print('allData');
-    print(allData);
-    // if (userBookshelf.exists) {
-    //   Map<String, dynamic> bookShelfMap =
-    //       userBookshelf.data() as Map<String, dynamic>;
-    //   print('-------bookShelfMap--------');
-    //   print(bookShelfMap);
-    //   print(bookShelfMap.runtimeType);
-    //   List<Book> temp = [];
-    //   for (var book in bookShelfMap['books']) {
-    //     temp.add(Book.fromMap(book));
-    //   }
-    //   bookShelf = temp;
-    //   notifyListeners();
-    // } else {
-    //   await shelfReference.doc(uid).set({'books': []});
-    //   notifyListeners();
-    // }
+    // final allData = userBookshelf.docs.map((doc) => doc.data()).toList();
+    // print('userBookshelf');
+    // print(userBookshelf);
+    // print(userBookshelf.runtimeType);
+
+    // print('allData');
+    // print(allData);
+    // print(allData.runtimeType);
+    if (shelfReferenceUserID.exists) {
+      Map<String, dynamic> bookShelfMap =
+          shelfReferenceUserID.data() as Map<String, dynamic>;
+      print('-------bookShelfMap--------');
+      print(bookShelfMap);
+      print(bookShelfMap.runtimeType);
+      List<Book> temp = [];
+      for (var book in bookShelfMap['books']) {
+        temp.add(Book.fromMap(book));
+      }
+      bookShelf = temp;
+      notifyListeners();
+    } else {
+      await shelfReference.doc(uid).collection('myBookShelf')
+      .doc('temp')
+      .set({'temp': []});
+
+      notifyListeners();
+      // await shelfReference.doc(uid).collection('myBookShelf').doc('dwe').delete();
+    }
   }
 
   Future<void> addBookToShelf(String uid, Book book) async {

@@ -21,10 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
     bool isLogin = prefs.getBool('isLogin') ?? false;
     String uid = prefs.getString('uid') ?? '';
-    shelfProvider.fetchBookOrAddShelf(uid,'');
+    shelfProvider.fetchBookOrCreateShelf(uid);
 
     print("[*] 로그인 상태:$isLogin");
-
 
     if (isLogin) {
       String? email = prefs.getString('email');
