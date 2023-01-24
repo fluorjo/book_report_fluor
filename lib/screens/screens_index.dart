@@ -14,7 +14,7 @@ class _IndexScreenState extends State<IndexScreen> {
   final List<Widget> _tabs = [
     HomeTab(),
     SearchTab(),
-    CartTab(),
+    ShelfTab(),
     ProfileTab(),
   ];
 

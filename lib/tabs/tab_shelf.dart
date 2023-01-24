@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CartTab extends StatelessWidget {
+class ShelfTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
