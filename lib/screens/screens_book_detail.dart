@@ -3,12 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:book_report_fluor/models/model_shelf.dart';
 import '../models/model_book.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class bookDetailScreen extends StatelessWidget {
-  final String bookTitle='';
-  final String bookThumbnail='';
-  final String bookContents='';
-  final List<dynamic> bookAuthors=[];
+  final String bookTitle;
+  final String bookThumbnail;
+  final String bookContents;
+  final List<dynamic> bookAuthors;
 
   late String uid = '';
 
@@ -17,19 +18,17 @@ class bookDetailScreen extends StatelessWidget {
     uid = prefs.getString('uid') ?? '';
   }
 
-  // bookDetailScreen({
-  //   required this.bookTitle,
-  //   required this.bookThumbnail,
-  //   required this.bookContents,
-  //   required this.bookAuthors,
-  // });
+  bookDetailScreen({
+    required this.bookTitle,
+    required this.bookThumbnail,
+    required this.bookContents,
+    required this.bookAuthors,
+  });
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    final book = ModalRoute.of(context)!.settings.arguments as Book;
-    final shelfProvider = Provider.of<ShelfProvider>(context);
     getUid();
 
     return Scaffold(
@@ -117,26 +116,23 @@ class bookDetailScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  shelfProvider.isBookInShelf(book)
-                      ? const Icon(Icons.check, color: Colors.blue)
-                      : InkWell(
-                          onTap: () {
-                            print(uid);
-                            shelfProvider.addBookToShelf(uid, book);
-                          },
-                          child: Column(
-                            children: const [
-                              Icon(
-                                Icons.add,
-                                color: Colors.blue,
-                              ),
-                              Text(
-                                '책장에 넣기',
-                                style: TextStyle(color: Colors.blue),
-                              )
-                            ],
-                          ),
-                        )
+                  Column(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          fetchToShelf();
+                        },
+                        icon: const Icon(
+                          Icons.save,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      const Text(
+                        '서재에 저장',
+                        style: TextStyle(fontSize: 18, color: Colors.blue),
+                      ),
+                    ],
+                  ),
                 ],
               ),
               Container(
@@ -149,4 +145,15 @@ class bookDetailScreen extends StatelessWidget {
           ),
         ));
   }
+
+  void fetchToShelf() {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection('bookShelf').add({
+      'title': bookTitle,
+    });
+  }
 }
+  // final String bookTitle;
+  // final String bookThumbnail;
+  // final String bookContents ;
+  // final List<dynamic> bookAuthors;

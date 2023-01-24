@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:book_report_fluor/models/model_book.dart';
+import '../screens/screens_book_detail.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -110,25 +111,18 @@ class _SearchScreenState extends State<SearchScreen> {
                             ],
                           ),
                           onTap: () {
-                            // Navigator.of(context).push(
-                            //   MaterialPageRoute(
-                            //     builder: (context) => bookDetailScreen(
-                            //       bookTitle: data![index]['title'].toString(),
-                            //       bookThumbnail: data![index]['thumbnail'],
-                            //       bookContents: data![index]['contents'],
-                            //       bookAuthors: data![index]['authors'],
-                            //     ),
-                            //   ),
-                            // );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => bookDetailScreen(
+                                  bookTitle: data![index]['title'].toString(),
+                                  bookThumbnail: data![index]['thumbnail'],
+                                  bookContents: data![index]['contents'],
+                                  bookAuthors: data![index]['authors'],
+                                ),
+                              ),
+                            );
 
-                            Navigator.pushNamed(context, '/bookDetail',
-                                arguments: Book(
-                                    thumbnail: data![index]['thumbnail'],
-                                    id: '123124',
-                                    title: data![index]['title'].toString(),
-                                    description: data![index]['contents']));
-
-                            print(data![index]['thumbnail']);
+              
                           },
                         ),
                       ),

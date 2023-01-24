@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           '/register': (context) => RegisterScreen(),
           '/search': (context) => SearchScreen(),
           '/detail': (context) => DetailScreen(),
-          '/bookDetail': (context) => bookDetailScreen(),
+          //'/bookDetail': (context) => bookDetailScreen(),
         },
         initialRoute: '/',
       ),
