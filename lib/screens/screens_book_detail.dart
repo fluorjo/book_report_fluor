@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:book_report_fluor/models/model_shelf.dart';
-import '../models/model_book.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class bookDetailScreen extends StatelessWidget {
@@ -120,7 +117,7 @@ class bookDetailScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          fetchToShelf();
+                          fetchToShelf(uid);
                         },
                         icon: const Icon(
                           Icons.save,
@@ -146,11 +143,16 @@ class bookDetailScreen extends StatelessWidget {
         ));
   }
 
-  void fetchToShelf() {
+  Future<void> fetchToShelf(String uid) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    firestore.collection('bookShelf').add({
+
+    Map<String, dynamic> bbb = {
+      'books': 'qweeqwe',
       'title': bookTitle,
-    });
+      'thumbnail': bookThumbnail,
+    };
+
+    await firestore.collection('bookShelf').doc(uid).set(bbb);
   }
 }
   // final String bookTitle;
