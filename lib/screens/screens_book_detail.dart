@@ -151,11 +151,16 @@ class bookDetailScreen extends StatelessWidget {
       'title': bookTitle,
       'thumbnail': bookThumbnail,
     };
-
-    await firestore.collection('bookShelf').doc(uid).set(bbb);
+//이제 이거를
+    await firestore
+        .collection('bookShelf')
+        .doc(uid)
+        .collection('books')
+        .doc('sdasd')
+        .set(bbb);
   }
 }
-  // final String bookTitle;
-  // final String bookThumbnail;
-  // final String bookContents ;
-  // final List<dynamic> bookAuthors;
+// final String bookTitle;
+// final String bookThumbnail;
+// final String bookContents ;
+// final List<dynamic> bookAuthors;
