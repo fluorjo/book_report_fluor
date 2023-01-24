@@ -117,7 +117,7 @@ class bookDetailScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          fetchToShelf(uid);
+                          fetchToShelf(uid, bookTitle);
                         },
                         icon: const Icon(
                           Icons.save,
@@ -143,21 +143,21 @@ class bookDetailScreen extends StatelessWidget {
         ));
   }
 
-  Future<void> fetchToShelf(String uid) async {
+  Future<void> fetchToShelf(String uid, String bookTitleForDoc) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-    Map<String, dynamic> bbb = {
-      'books': 'qweeqwe',
+    Map<String, dynamic> bookMapForShelf = {
       'title': bookTitle,
       'thumbnail': bookThumbnail,
+      'authors': bookAuthors.join(',')
     };
 //이제 이거를
     await firestore
         .collection('bookShelf')
         .doc(uid)
-        .collection('books')
-        .doc('sdasd')
-        .set(bbb);
+        .collection('myBookShelf')
+        .doc(bookTitleForDoc)
+        .set(bookMapForShelf);
   }
 }
 // final String bookTitle;
