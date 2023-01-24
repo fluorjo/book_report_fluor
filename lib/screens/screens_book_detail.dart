@@ -151,7 +151,7 @@ class bookDetailScreen extends StatelessWidget {
       'thumbnail': bookThumbnail,
       'authors': bookAuthors.join(',')
     };
-//이제 이거를
+
     await firestore
         .collection('bookShelf')
         .doc(uid)
