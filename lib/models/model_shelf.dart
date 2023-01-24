@@ -9,7 +9,7 @@ class ShelfProvider with ChangeNotifier {
 
   ShelfProvider({reference}) {
     shelfReference =
-        reference ?? FirebaseFirestore.instance.collection('bookShelf');
+        reference ?? FirebaseFirestore.instance.collection('User');
   }
 
   Future<void> fetchBookOrCreateShelf(String uid) async {
@@ -17,6 +17,13 @@ class ShelfProvider with ChangeNotifier {
       return;
     }
     final shelfReferenceUserID = await shelfReference.doc(uid).get();
+
+    print('shelfReferenceUserID');
+    print(shelfReferenceUserID);
+    print('shelfReferenceUserID.data()');
+    print(shelfReferenceUserID.data());
+    print('shelfReferenceUserID.exists');
+    print(shelfReferenceUserID.exists);
 
     // final allData = userBookshelf.docs.map((doc) => doc.data()).toList();
     // print('userBookshelf');
@@ -42,6 +49,9 @@ class ShelfProvider with ChangeNotifier {
       await shelfReference.doc(uid).collection('myBookShelf')
       .doc('temp')
       .set({'temp': []});
+      
+      await shelfReference.doc(uid)
+      .set({'tempDoc': []});
 
       notifyListeners();
       // await shelfReference.doc(uid).collection('myBookShelf').doc('dwe').delete();

@@ -153,7 +153,7 @@ class bookDetailScreen extends StatelessWidget {
     };
 
     await firestore
-        .collection('bookShelf')
+        .collection('User')
         .doc(uid)
         .collection('myBookShelf')
         .doc(bookTitleForDoc)
