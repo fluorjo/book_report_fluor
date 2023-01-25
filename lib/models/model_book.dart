@@ -1,38 +1,43 @@
 class Book {
   late String title;
-  late String description;
-  late String id;
+  late String authors;
+  // late String id;
   late String thumbnail;
+  
 
   Book({
     required this.title,
-    required this.description,
-    required this.id,
+    required this.authors,
+    // required this.id,
     required this.thumbnail,
   });
+
+  @override
+  String toString() => '타이틀은~ $title 작가는~ $authors 썸네일은~ $thumbnail';
+  
 
   Book.fromBookApi(ApiDataList) {
     Map<String, dynamic> data = ApiDataList.asMap();
 //as로 형변환해주는 것.
-    id = data['id'];
+    // id = data['id'];
     title = data['title'];
-    description = data['description'];
+    authors = data['authors'];
     thumbnail=data['thumbnail'];
   }
 
   Book.fromMap(Map<String, dynamic> data) {
-    id = data['id'];
+    // id = data['id'];
     title = data['title'];
-    description = data['description'];
+    authors = data['authors'];
         thumbnail=data['thumbnail'];
 
   }
 
   Map<String, dynamic> toSnapshot() {
     return {
-      'id': id,
+      // 'id': id,
       'title': title,
-      'description': description,
+      'authors': authors,
       'thumbnail':thumbnail,
     };
   }

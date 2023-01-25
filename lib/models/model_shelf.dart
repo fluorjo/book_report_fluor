@@ -21,24 +21,34 @@ class ShelfProvider with ChangeNotifier {
         await userReference.doc(uid).collection('myBookShelf').get();
     final BookListOfShelf =
         UserBookShelfJQSnapshot.docs.map((doc) => doc.data()).toList();
-    print(BookListOfShelf);
-    print(BookListOfShelf.runtimeType);
+    for (var sss in BookListOfShelf) {
+      print(sss.runtimeType);
+      print('================sss.runtimeType');
+    }
+
     if (shelfReferenceUserID.exists) {
-      Map<String, dynamic> bookShelfMap =
-          shelfReferenceUserID.data() as Map<String, dynamic>;
-      print('-------bookShelfMap--------');
-      print(bookShelfMap);
-      print(bookShelfMap.runtimeType);
+      // Map<String, dynamic> bookShelfMap =
+      //     shelfReferenceUserID.data() as Map<String, dynamic>;
+      // print('-------bookShelfMap--------');
+      // print(bookShelfMap);
+      // print(bookShelfMap.runtimeType);
 
       print('-------shelfReference--------');
       print(shelfReference);
-      // List<Book> temp = [];
-      // for (var book in bookShelfMap['books']) {
-      //   temp.add(Book.fromMap(book));
-      // }
-      // bookShelf = temp;
-
+      List<Book> temp = [];
+      for (var book in BookListOfShelf) {
+        temp.add(Book.fromMap(book));
+      }
+      booksInShelf = temp;
       notifyListeners();
+
+      print('-------------booksInShelf---------');
+      for (var ddd in booksInShelf){
+        print(ddd);
+      }
+    
+
+      
     } else {
       await userReference
           .doc(uid)
@@ -75,7 +85,7 @@ class ShelfProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  bool isBookInShelf(Book book) {
-    return booksInShelf.any((element) => element.id == book.id);
-  }
+  // bool isBookInShelf(Book book) {
+  //   return booksInShelf.any((element) => element.id == book.id);
+  // }
 }
