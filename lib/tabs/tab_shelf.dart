@@ -17,14 +17,31 @@ class ShelfTab extends StatelessWidget {
     final shelfProvider = Provider.of<ShelfProvider>(context);
     getUid();
 
-    // return FutureBuilder(
-    //   future: shelfProvider.fetchBookOrCreateShelf(uid),
-    //   builder: (context, snapshot) {
-    //     if(shelfProvider.b)
-        
-    //   },snapshot
-    //   )
-    
+    return FutureBuilder(
+      future: shelfProvider.fetchBookOrCreateShelf(uid),
+      builder: (context, snapshot) {
+        if (shelfProvider.booksInShelf.length == 0) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return ListView.builder(
+              itemCount: shelfProvider.booksInShelf.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  // onTap: () {
+                  //   Navigator.pushNamed(context, '/bookDetail',
+                  //       arguments: shelfProvider.booksInShelf[index]);
+                  // },
+                  title: Text(shelfProvider.booksInShelf[index].title),
+                  // trailing: Text(shelfProvider.booksInShelf[index].authors),
+                  leading: Text(shelfProvider.booksInShelf[index].thumbnail),
+                );
+              });
+        }
+      },
+    );
+
     return const Center(child: Text('서재'));
   }
 }

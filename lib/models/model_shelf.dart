@@ -41,14 +41,6 @@ class ShelfProvider with ChangeNotifier {
       }
       booksInShelf = temp;
       notifyListeners();
-
-      print('-------------booksInShelf---------');
-      for (var ddd in booksInShelf){
-        print(ddd);
-      }
-    
-
-      
     } else {
       await userReference
           .doc(uid)
