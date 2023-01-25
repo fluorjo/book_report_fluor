@@ -42,6 +42,6 @@ class ShelfTab extends StatelessWidget {
       },
     );
 
-    return const Center(child: Text('서재'));
+    //return const Center(child: Text('서재'));
   }
 }
