@@ -3,6 +3,7 @@ import 'package:book_report_fluor/tabs/tab_shelf.dart';
 import 'package:book_report_fluor/tabs/tab_home.dart';
 import 'package:book_report_fluor/tabs/tab_profile.dart';
 import 'package:book_report_fluor/tabs/tab_search.dart';
+import 'package:book_report_fluor/tabs/tab_note.dart';
 
 class IndexScreen extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _IndexScreenState extends State<IndexScreen> {
   final List<Widget> _tabs = [
     HomeTab(),
     SearchTab(),
+    NoteTab(),
     ShelfTab(),
     ProfileTab(),
   ];
@@ -43,6 +45,7 @@ class _IndexScreenState extends State<IndexScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
+          BottomNavigationBarItem(icon: Icon(Icons.edit_note_outlined), label: '노트'),
           BottomNavigationBarItem(icon: Icon(Icons.library_books), label: '서재'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
