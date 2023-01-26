@@ -7,6 +7,8 @@ import 'package:book_report_fluor/models/model_shelf.dart';
 class ShelfTab extends StatelessWidget {
   late String uid = '';
 
+  ShelfTab({Key? key}) : super(key: key);
+
   Future<void> getUid() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     uid = prefs.getString('uid') ?? '';
@@ -20,8 +22,8 @@ class ShelfTab extends StatelessWidget {
     return FutureBuilder(
       future: shelfProvider.fetchBookOrCreateShelf(uid),
       builder: (context, snapshot) {
-        if (shelfProvider.booksInShelf.length == 0) {
-          return Center(
+        if (shelfProvider.booksInShelf.isEmpty) {
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
@@ -29,14 +31,20 @@ class ShelfTab extends StatelessWidget {
               itemCount: shelfProvider.booksInShelf.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  // onTap: () {
-                  //   Navigator.pushNamed(context, '/bookDetail',
-                  //       arguments: shelfProvider.booksInShelf[index]);
-                  // },
-                  title: Text(shelfProvider.booksInShelf[index].title),
-                  // trailing: Text(shelfProvider.booksInShelf[index].authors),
-                  leading: Text(shelfProvider.booksInShelf[index].thumbnail),
-                );
+                    onTap: () {
+                      //   Navigator.pushNamed(context, '/bookDetail',
+                      //       arguments: shelfProvider.booksInShelf[index]);
+                      //
+                    },
+                    title:Text('실험'),
+                    // Text(shelfProvider.booksInShelf[index].title),
+                    // trailing: Text(shelfProvider.booksInShelf[index].authors),
+                    leading: const Icon(
+                      Icons.home,
+                      color: Colors.amber,
+                    )
+                    // Text(shelfProvider.booksInShelf[index].thumbnail),
+                    );
               });
         }
       },
