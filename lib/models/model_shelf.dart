@@ -15,17 +15,14 @@ class ShelfProvider with ChangeNotifier {
     if (uid == '') {
       return;
     }
+          print('파이어베이스로부터 자료 가져오는 프로바이더 시작');
     final shelfReferenceUserID = await userReference.doc(uid).get();
     shelfReference = userReference.doc(uid).collection('myBookShelf');
     final UserBookShelfJQSnapshot =
         await userReference.doc(uid).collection('myBookShelf').get();
     final BookListOfShelf =
         UserBookShelfJQSnapshot.docs.map((doc) => doc.data()).toList();
-    for (var sss in BookListOfShelf) {
-      print(sss.runtimeType);
-      print('================sss.runtimeType');
-    }
-
+   
     if (shelfReferenceUserID.exists) {
       // Map<String, dynamic> bookShelfMap =
       //     shelfReferenceUserID.data() as Map<String, dynamic>;
@@ -33,9 +30,7 @@ class ShelfProvider with ChangeNotifier {
       // print(bookShelfMap);
       // print(bookShelfMap.runtimeType);
 
-      print('-------shelfReference--------');
-      print(shelfReference);
-      List<Book> temp = [];
+       List<Book> temp = [];
       for (var book in BookListOfShelf) {
         temp.add(Book.fromMap(book));
       }

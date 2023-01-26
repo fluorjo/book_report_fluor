@@ -32,18 +32,17 @@ class ShelfTab extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                     onTap: () {
-                      //   Navigator.pushNamed(context, '/bookDetail',
-                      //       arguments: shelfProvider.booksInShelf[index]);
-                      //
+
                     },
-                    title:Text('실험'),
-                    // Text(shelfProvider.booksInShelf[index].title),
-                    // trailing: Text(shelfProvider.booksInShelf[index].authors),
-                    leading: const Icon(
-                      Icons.home,
-                      color: Colors.amber,
-                    )
-                    // Text(shelfProvider.booksInShelf[index].thumbnail),
+                    title:Text(shelfProvider.booksInShelf[index].title),
+
+                    leading: SizedBox(
+                height: 50,
+                width: 50,
+                child: Image.network(
+                  shelfProvider.booksInShelf[index].thumbnail,
+                ),
+              ),
                     );
               });
         }
