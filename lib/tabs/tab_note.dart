@@ -17,7 +17,12 @@ class NoteTab extends StatelessWidget {
           onChanged: (value) {
             memo = value;
           },
-          decoration: InputDecoration(labelText: '노트'),
+          decoration: const InputDecoration(
+            labelText: '노트',
+            border: OutlineInputBorder(),
+          ),
+          maxLines: 10, // <-- SEE HERE
+          minLines: 1,
         ),
       ],
     ));
