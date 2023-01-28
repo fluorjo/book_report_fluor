@@ -21,9 +21,19 @@ class NoteTab extends StatelessWidget {
             labelText: '노트',
             border: OutlineInputBorder(),
           ),
-          maxLines: 10, // <-- SEE HERE
+          maxLines: 100,
           minLines: 1,
         ),
+        ElevatedButton.icon(
+          onPressed: () {},
+          icon: Icon(Icons.save),
+          label: const Text('저장'),
+        ),
+        ElevatedButton.icon(
+          onPressed: () {},
+          icon: Icon(Icons.delete),
+          label: const Text('삭제'),
+        )
       ],
     ));
   }
